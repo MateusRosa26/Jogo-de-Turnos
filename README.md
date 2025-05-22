@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -52,3 +53,7 @@ export default tseslint.config({
   },
 })
 ```
+=======
+# Jogo-de-Turnos
+Jogo de Turnos estilo pokemon com diferentes personagens e inimigos 25 rounds
+>>>>>>> 419dc1d5676f6b0164c8ff29401b7bf750dba995
