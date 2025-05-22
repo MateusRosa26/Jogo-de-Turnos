@@ -1,0 +1,33 @@
+:root[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --accent-primary: #4CAF50;
+  --accent-secondary: #45a049;
+  --border-color: #404040;
+  --health-bar-bg: #333333;
+  --health-bar-fill: #4CAF50;
+  --health-bar-fill-low: #ff4444;
+  --battle-log-bg: #2d2d2d;
+  --card-bg: #2d2d2d;
+  --button-hover: #45a049;
+  --button-disabled: #404040;
+}
+
+:root[data-theme="light"] {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --accent-primary: #4CAF50;
+  --accent-secondary: #45a049;
+  --border-color: #e0e0e0;
+  --health-bar-bg: #e0e0e0;
+  --health-bar-fill: #4CAF50;
+  --health-bar-fill-low: #ff4444;
+  --battle-log-bg: #ffffff;
+  --card-bg: #ffffff;
+  --button-hover: #45a049;
+  --button-disabled: #cccccc;
+} 
