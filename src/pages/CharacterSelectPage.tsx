@@ -7,7 +7,7 @@ import { Tana } from '@/data/characters/Tana/character';
 import { DaMoze } from '@/data/characters/DaMoze/character';
 import { Markin } from '@/data/characters/Markin/character';
 import { Zaion } from '@/data/characters/Zaion/character';
-import CharacterCard from '@/components/CharacterCard.tsx';
+import CharacterCard from '@/components/CharacterCard';
 import '@/styles/shared.css';
 
 export default function CharacterSelectPage() {

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useGame } from '@/context/GameContext';
-import BattleScene from '@/components/battle/BattleScene.tsx';
+import BattleScene from '@/components/battle/BattleScene';
 
 export default function BattlePage() {
   const { player, currentEnemy, nextEnemy, resetGame } = useGame();

@@ -3,12 +3,12 @@ import type { Character } from '@/types/game';
 import { useGame } from '@/context/GameContext';
 import { useBattle } from '@/hooks/useBattle';
 import { GYM_BACKGROUNDS } from '@/data/gyms';
-import CharacterCard from '@/components/CharacterCard.tsx';
-import BattleControls from './BattleControls.tsx';
-import LevelUpScreen from './LevelUpScreen.tsx';
-import ItemRewardScreen from '@/components/ItemRewardScreen.tsx';
-import CraftingScreen from '@/components/CraftingScreen.tsx';
-import CraftedItemDisplay from '@/components/CraftedItemDisplay.tsx';
+import CharacterCard from '@/components/CharacterCard';
+import BattleControls from './BattleControls';
+import LevelUpScreen from './LevelUpScreen';
+import ItemRewardScreen from '@/components/ItemRewardScreen';
+import CraftingScreen from '@/components/CraftingScreen';
+import CraftedItemDisplay from '@/components/CraftedItemDisplay';
 import '@/styles/shared.css';
 import '@/styles/battleScene.css';
 
