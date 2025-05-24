@@ -17,7 +17,7 @@ export default function MoveButton({ move, currentLevel, disabled, onClick }: Mo
     >
       <h3>{move.name}</h3>
       <p>Dano: {move.damage}</p>
-      <p>Nível: {currentLevel}/3</p>
+      <p>Nível: {currentLevel}/5</p>
       <div className="move-tooltip">
         <p>{move.description}</p>
         {move.effects && move.effects.length > 0 && (

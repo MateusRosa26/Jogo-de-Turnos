@@ -32,7 +32,7 @@ export function useBattle({
     setMessage(newMessage);
   }, []);
 
-  const applyStatusEffects = useCallback((character: Character, setCharacter: React.Dispatch<React.SetStateAction<Character>>) => {
+  const applyStatusEffects = useCallback((character: Character, isPlayer: boolean) => {
     const newStatusEffects: StatusEffect[] = [];
     let skipTurn = false;
     let totalDamage = 0;
@@ -43,6 +43,9 @@ export function useBattle({
           const effectResult = status.effect(character);
           if (typeof effectResult === 'number') {
             totalDamage += effectResult;
+            if (effectResult > 0) {
+              addMessage(`${character.name} sofreu ${effectResult} de dano por ${status.name}!`);
+            }
           }
         }
 
@@ -57,27 +60,40 @@ export function useBattle({
       }
     });
 
+    const newCharacter = {
+      ...character,
+      statusEffects: newStatusEffects,
+      skipNextTurn: skipTurn
+    };
+
     if (totalDamage > 0) {
-      setCharacter((prev) => ({
-        ...prev,
-        currentHealth: Math.max(0, prev.currentHealth - totalDamage),
-        statusEffects: newStatusEffects,
-        skipNextTurn: skipTurn
-      }));
-    } else {
-      setCharacter((prev) => ({
-        ...prev,
-        statusEffects: newStatusEffects,
-        skipNextTurn: skipTurn
-      }));
+      newCharacter.currentHealth = Math.max(0, character.currentHealth - totalDamage);
     }
 
+    if (isPlayer) {
+      setPlayer(newCharacter);
+    } else {
+      setEnemy(newCharacter);
+    }
+    
     return skipTurn;
-  }, []);
+  }, [addMessage]);
 
-  const handleAttack = useCallback((move: Move, attacker: Character, target: Character) => {
+  const handleAttack = useCallback((move: Move, attacker: Character, target: Character, currentTurn: 'PLAYER' | 'ENEMY') => {
+    setDisabled(true);
     let totalDamage = 0;
     const hits = move.multiHit || 1;
+    
+    if (target.evasion && Math.random() < target.evasion) {
+      addMessage(`${target.name} esquivou do ataque!`);
+      setTimeout(() => {
+        setPlayerAnimation('');
+        setEnemyAnimation('');
+        setTurn(currentTurn === 'PLAYER' ? 'ENEMY' : 'PLAYER');
+        setDisabled(false);
+      }, 1000);
+      return;
+    }
     
     for (let i = 0; i < hits; i++) {
       const damage = move.damage;
@@ -102,99 +118,137 @@ export function useBattle({
       }
     }
     
-    target.currentHealth = Math.max(0, target.currentHealth - totalDamage);
+    const newTarget = {
+      ...target,
+      currentHealth: Math.max(0, target.currentHealth - totalDamage)
+    };
     
-    if (attacker === player) {
-      setPlayer({ ...player });
-      setEnemy({ ...target });
+    const isPlayerAttacking = currentTurn === 'PLAYER';
+    
+    if (isPlayerAttacking) {
+      setEnemy(newTarget);
       setPlayerAnimation('attacking');
       setEnemyAnimation('receiving-attack');
     } else {
-      setPlayer({ ...target });
-      setEnemy({ ...enemy });
+      setPlayer(newTarget);
       setEnemyAnimation('attacking');
       setPlayerAnimation('receiving-attack');
     }
     
     addMessage(`${attacker.name} usou ${move.name} e causou ${totalDamage} de dano!`);
     
-    if (target.currentHealth <= 0) {
-      if (target === enemy) {
+    if (newTarget.currentHealth <= 0) {
+      if (isPlayerAttacking) {
         addMessage(`${target.name} foi derrotado!`);
-        onBattleEnd('PLAYER');
+        setTimeout(() => {
+          gainExperience(target.level * 10);
+          setTimeout(() => onBattleEnd('PLAYER'), 500);
+        }, 1500);
       } else {
         addMessage(`${target.name} foi derrotado!`);
-        onBattleEnd('ENEMY');
+        setTimeout(() => onBattleEnd('ENEMY'), 1500);
       }
     } else {
       setTimeout(() => {
         setPlayerAnimation('');
         setEnemyAnimation('');
-        setTurn(turn === 'PLAYER' ? 'ENEMY' : 'PLAYER');
+        setTurn(currentTurn === 'PLAYER' ? 'ENEMY' : 'PLAYER');
         setDisabled(false);
       }, 1000);
     }
-  }, [player, enemy, addMessage, onBattleEnd, turn]);
+  }, [addMessage, onBattleEnd, gainExperience]);
 
   const handleMoveSelect = useCallback((move: Move) => {
-    handleAttack(move, player, enemy);
-  }, [handleAttack, player, enemy]);
+    if (turn === 'PLAYER' && !disabled) {
+      handleAttack(move, player, enemy, turn);
+    }
+  }, [handleAttack, player, enemy, turn, disabled]);
 
   const handleLevelUpMove = useCallback((moveId: string) => {
-    if (player.moveLevels[moveId] >= 3) return;
+    // First update the local player state
+    setPlayer(prev => {
+      const currentLevel = prev.moveLevels[moveId] || 0;
+      if (currentLevel >= 5) return prev;
+      
+      const move = prev.moves.find(m => m.id === moveId);
+      if (!move) return prev;
+      
+      const newLevel = currentLevel + 1;
+      const newDamage = Math.floor(move.damage * 1.25);
+      
+      console.log(`Local Skill Evolution: ${move.name} Level ${currentLevel} -> ${newLevel}, Damage ${move.damage} -> ${newDamage} (+25%)`);
+      
+      return {
+        ...prev,
+        moveLevels: {
+          ...prev.moveLevels,
+          [moveId]: newLevel
+        },
+        moves: prev.moves.map(m => {
+          if (m.id === moveId) {
+            return {
+              ...m,
+              damage: newDamage
+            };
+          }
+          return m;
+        })
+      };
+    });
     
+    // Then update the global state
     levelUpMove(moveId);
     setShowLevelUp(false);
     
-    if (enemy.currentHealth <= 0) {
-      setTimeout(() => onBattleEnd('PLAYER'), 500);
-    }
-  }, [player.moveLevels, levelUpMove, setShowLevelUp, enemy.currentHealth, onBattleEnd]);
+    // Check if battle should end after level up
+    setTimeout(() => {
+      if (enemy.currentHealth <= 0) {
+        onBattleEnd('PLAYER');
+      }
+    }, 100);
+  }, [levelUpMove, setShowLevelUp, enemy.currentHealth, onBattleEnd]);
 
-  // Reset enemy health when opponent changes
+  // Reset both player and enemy when a new battle starts
   useEffect(() => {
-    setEnemy({
-      ...initialEnemy,
-      currentHealth: initialEnemy.maxHealth,
-      statusEffects: [],
-      buffs: []
-    });
-    setTurn(initialPlayer.level >= initialEnemy.level ? 'PLAYER' : 'ENEMY');
-  }, [initialEnemy, initialPlayer.level]);
-
-  // Reset player health when player changes
-  useEffect(() => {
+    // Reset player to full health at start of every battle
     setPlayer({
       ...initialPlayer,
       currentHealth: initialPlayer.maxHealth,
       statusEffects: [],
       buffs: []
     });
-  }, [initialPlayer]);
+    
+    // Reset enemy
+    setEnemy({
+      ...initialEnemy,
+      currentHealth: initialEnemy.maxHealth,
+      statusEffects: [],
+      buffs: []
+    });
+    
+    setTurn(initialPlayer.level >= initialEnemy.level ? 'PLAYER' : 'ENEMY');
+    setMessage('');
+    setDisabled(false);
+    setPlayerAnimation('');
+    setEnemyAnimation('');
+  }, [initialEnemy.id, initialPlayer.level, initialEnemy.maxHealth, initialPlayer.maxHealth]);
 
-  // Check for battle end
+  // Update player when player stats change (level up, etc.) but keep current health
   useEffect(() => {
-    if (player.currentHealth <= 0) {
-      setMessage(`${player.name} foi derrotado!`);
-      setTimeout(() => onBattleEnd('ENEMY'), 2000);
-    } else if (enemy.currentHealth <= 0) {
-      setMessage(`${enemy.name} foi derrotado!`);
-      gainExperience(enemy.level * 10);
-      setTimeout(() => {
-        if (showLevelUp) {
-          return;
-        }
-        onBattleEnd('PLAYER');
-      }, 2000);
-    }
-  }, [player.currentHealth, enemy.currentHealth, onBattleEnd, player.name, enemy.name, enemy.level, gainExperience, showLevelUp]);
+    setPlayer(prev => ({
+      ...initialPlayer,
+      currentHealth: prev.currentHealth, // Preserve current health during battle
+      statusEffects: prev.statusEffects,
+      buffs: prev.buffs
+    }));
+  }, [initialPlayer.moves, initialPlayer.moveLevels]);
 
-  // Enemy turn effect
+  // Handle enemy turn
   useEffect(() => {
-    if (turn === 'ENEMY' && enemy.currentHealth > 0 && !disabled) {
+    if (turn === 'ENEMY' && enemy.currentHealth > 0 && !disabled && !showLevelUp) {
       setDisabled(true);
       setTimeout(() => {
-        const skipTurn = applyStatusEffects(enemy, setEnemy);
+        const skipTurn = applyStatusEffects(enemy, false);
         if (skipTurn) {
           setMessage(`${enemy.name} está confuso e perdeu o turno!`);
           setTurn('PLAYER');
@@ -203,25 +257,23 @@ export function useBattle({
         }
 
         const randomMove = enemy.moves[Math.floor(Math.random() * enemy.moves.length)];
-        handleAttack(randomMove, enemy, player);
+        handleAttack(randomMove, enemy, player, turn);
       }, 1000);
     }
-  }, [turn, enemy, player, handleAttack, disabled, applyStatusEffects]);
+  }, [turn, enemy.currentHealth, disabled, showLevelUp]);
 
-  // Apply status effects at turn start
+  // Handle player turn status effects
   useEffect(() => {
-    if (turn === 'PLAYER') {
-      const skipTurn = applyStatusEffects(player, setPlayer);
+    if (turn === 'PLAYER' && !showLevelUp) {
+      const skipTurn = applyStatusEffects(player, true);
       if (skipTurn) {
         setMessage(`${player.name} está confuso e perdeu o turno!`);
         setTurn('ENEMY');
         return;
       }
       setDisabled(false);
-    } else {
-      applyStatusEffects(enemy, setEnemy);
     }
-  }, [turn, player, enemy, applyStatusEffects]);
+  }, [turn, showLevelUp]);
 
   return {
     player,

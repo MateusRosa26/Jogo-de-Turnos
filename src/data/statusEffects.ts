@@ -9,7 +9,7 @@ export const STATUS_EFFECTS: Record<string, StatusEffect> = {
     effect: (target) => {
       if (Math.random() < 0.3) {
         target.currentHealth = Math.max(0, target.currentHealth - 5);
-        return 5; // Retorna o dano causado
+        return 5; 
       }
       return 0;
     },
@@ -39,10 +39,8 @@ export const STATUS_EFFECTS: Record<string, StatusEffect> = {
     name: 'Sangramento',
     description: 'Causa dano ao longo do tempo',
     duration: 3,
-    effect: (target) => {
-      const damage = 5;
-      target.currentHealth = Math.max(0, target.currentHealth - damage);
-      return damage;
+    effect: (target: Character) => {
+      return 5; // Retorna o dano a ser causado
     },
   },
   sedoso: {
@@ -92,10 +90,8 @@ export const STATUS_EFFECTS: Record<string, StatusEffect> = {
     name: 'Refluxo',
     description: 'Causa dano ao longo do tempo',
     duration: 3,
-    effect: (target) => {
-      const damage = 3;
-      target.currentHealth = Math.max(0, target.currentHealth - damage);
-      return damage;
+    effect: (target: Character) => {
+      return 3; // Retorna o dano a ser causado
     },
   },
   'acumulo-de-odio': {
@@ -125,9 +121,7 @@ export const STATUS_EFFECTS: Record<string, StatusEffect> = {
     duration: 3,
     description: 'Causa 4 de dano por turno por 3 turnos',
     effect: (target: Character) => {
-      const damage = 4;
-      target.currentHealth = Math.max(0, target.currentHealth - damage);
-      return damage;
+      return 4; // Retorna o dano a ser causado
     }
   },
   'recuperacao': {
@@ -154,7 +148,7 @@ export const STATUS_EFFECTS: Record<string, StatusEffect> = {
       const damage = remainingDuration <= 2 ? 16 : 8;
       
       // Aplica a chance de esquiva
-      target.accuracy = 0.7; // Reduz a precisão do alvo em 30%
+      target.evasion = 0.25; // Aumenta a chance de esquiva em 25%
       
       return damage;
     }

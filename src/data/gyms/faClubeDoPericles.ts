@@ -1,6 +1,7 @@
 import type { Gym, Character, Move } from '@/types/game';
 import { STATUS_EFFECTS } from '@/data/statusEffects';
 import { CHARACTER_SPRITES } from '@/data/config/sprites';
+import { PERICLES_ITEMS } from '@/data/items';
 
 // Moves do Landim
 const landimMoves: Move[] = [
@@ -120,12 +121,12 @@ const tanaMoves: Move[] = [
 const landim: Character = {
   id: 'landim',
   name: 'Landim',
-  level: 1,
+  level: 2,
   experience: 0,
-  nextLevelExp: 100,
-  maxHealth: 80,
-  currentHealth: 80,
-  attack: 12,
+  nextLevelExp: 250,
+  maxHealth: 120,
+  currentHealth: 120,
+  attack: 15,
   moves: landimMoves,
   moveLevels: {
     'agilidade-do-mais-pequeno': 1,
@@ -139,12 +140,12 @@ const landim: Character = {
 const kaiera: Character = {
   id: 'kaiera',
   name: 'Kaiera',
-  level: 2,
+  level: 4,
   experience: 0,
-  nextLevelExp: 250,
-  maxHealth: 100,
-  currentHealth: 100,
-  attack: 15,
+  nextLevelExp: 450,
+  maxHealth: 200,
+  currentHealth: 200,
+  attack: 25,
   moves: kaieraMoves,
   moveLevels: {
     'chicote-de-cabelo': 1,
@@ -158,12 +159,12 @@ const kaiera: Character = {
 const damoze: Character = {
   id: 'damoze',
   name: 'DaMoze',
-  level: 4,
+  level: 6,
   experience: 0,
-  nextLevelExp: 450,
-  maxHealth: 120,
-  currentHealth: 120,
-  attack: 18,
+  nextLevelExp: 1000,
+  maxHealth: 300,
+  currentHealth: 300,
+  attack: 35,
   moves: damozeMoves,
   moveLevels: {
     'nevoeiro': 1,
@@ -171,7 +172,7 @@ const damoze: Character = {
     'barrigada': 1,
     'alt-f4-lanchinho': 1
   },
-  sprite: '/images/characters/damoze.png',
+  sprite: '/assets/personagens/daMoze.png',
   statusEffects: [],
   buffs: []
 };
@@ -179,12 +180,12 @@ const damoze: Character = {
 const tana: Character = {
   id: 'tana',
   name: 'Tana',
-  level: 6,
+  level: 8,
   experience: 0,
-  nextLevelExp: 700,
-  maxHealth: 160,
-  currentHealth: 160,
-  attack: 25,
+  nextLevelExp: 1750,
+  maxHealth: 380,
+  currentHealth: 380,
+  attack: 45,
   moves: tanaMoves,
   moveLevels: {
     'pedalada': 1,
@@ -202,7 +203,5 @@ export const faClubeDoPericles: Gym = {
   name: 'Fa Clube do Pericles',
   description: 'O primeiro ginásio do jogo, onde os jogadores enfrentam os membros do Fa Clube do Pericles.',
   enemies: [landim, kaiera, damoze, tana],
-  requiredLevel: 1,
-  baseExpReward: 100,
-  expPerLevel: 50
+    requiredLevel: 1,  baseExpReward: 100,  expPerLevel: 50,  rewardItems: PERICLES_ITEMS
 }; 

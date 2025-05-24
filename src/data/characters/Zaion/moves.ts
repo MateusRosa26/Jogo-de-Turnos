@@ -1,22 +1,21 @@
 import type { Move } from '@/types/game';
 import { STATUS_EFFECTS } from '@/data/statusEffects';
 
-export const yanJMoves: Move[] = [
+export const zaionMoves: Move[] = [
   {
-    id: 'cortina-de-fumaca',
-    name: 'Cortina de Fumaça',
-    description: 'Após carburar inúmeros baseados Yanj estabelece uma cortina ao seu redor que causa 8 de dano por turno até o final da partida e aumenta a chance de esquivar do ataque inimigo em 25%',
+    id: 'esporro',
+    name: 'Esporro',
+    description: 'Zaion fica puto e começa a gritar com o adversario, tem 45% de chance do oponente ficar oprimido e perder o proximo turno.',
     damage: 0,
-    effects: [STATUS_EFFECTS['cortina-de-fumaca']],
+    effects: [STATUS_EFFECTS.skipTurn],
     level: 1
   },
   {
-    id: 'ritual-rasta',
-    name: 'Ritual Rasta',
-    description: 'YanJ invoca os espíritos dos Rastas originais para entoar o hino de guerra OG aumentando o dano da próxima habilidade em 50% e fazendo com que ela cause o status Confusão por 1 turno.',
-    damage: 0,
-    buffs: [STATUS_EFFECTS['acumulo-de-odio']],
-    effects: [STATUS_EFFECTS.confusao],
+    id: 'call-rapido',
+    name: 'Call Rápido',
+    description: 'Faz uma call rápido , causando 25 de dano e aumentando sua confiança, aumenta o dano em 20% por 2 turnos.',
+    damage: 25,
+    buffs: [STATUS_EFFECTS.confianca],
     level: 1
   },
   {

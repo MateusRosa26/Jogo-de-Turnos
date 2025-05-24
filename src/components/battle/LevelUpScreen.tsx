@@ -15,17 +15,24 @@ export default function LevelUpScreen({ player, onMoveLevelUp }: LevelUpScreenPr
       <div className="moves-grid">
         {player.moves.map((move) => {
           const currentLevel = player.moveLevels[move.id] || 0;
-          const baseDamage = move.damage / Math.pow(1.15, currentLevel);
-          const nextDamage = Math.floor(baseDamage * Math.pow(1.15, currentLevel + 1));
+          
+          // Simplified calculation: next damage is always +25% from current
+          const nextDamage = Math.floor(move.damage * 1.25);
           
           return (
-            <MoveButton
-              key={move.id}
-              move={move}
-              currentLevel={currentLevel}
-              disabled={currentLevel >= 3}
-              onClick={() => onMoveLevelUp(move.id)}
-            />
+            <div key={move.id} className="move-level-up-card">
+              <MoveButton
+                move={move}
+                currentLevel={currentLevel}
+                disabled={currentLevel >= 5}
+                onClick={() => onMoveLevelUp(move.id)}
+              />
+              {currentLevel < 5 && (
+                <div className="level-up-preview">
+                  <p>Next Level: {move.damage} → {nextDamage} (+25%)</p>
+                </div>
+              )}
+            </div>
           );
         })}
       </div>

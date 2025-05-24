@@ -30,7 +30,7 @@ export const genericoDutoMoves: Move[] = [
     id: 'trolladinha-de-cria',
     name: 'Trolladinha de Cria',
     description: 'O usuário aplica uma trollada de relíquia que mexe com o psicológico do adversário. A habilidade causa 20 de dano devido a humilhação e tem 50% de chance de causar o status ragebait no adversário fazendo com que ele perca a clareza de suas ações e não jogue por 1 turno.',
-    damage: 20,
+    damage: 2000,
     effects: [STATUS_EFFECTS.ragebait],
     level: 1
   }
