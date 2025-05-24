@@ -17,7 +17,7 @@ export const Markin: Character = {
         'voo-da-aguia-manca': 0,
         'call-rapido': 0,
     },
-    sprite: '/assets/personagens/Markin.png',
+    sprite: `${import.meta.env.BASE_URL}assets/personagens/Markin.png`,
     statusEffects: [],
     buffs: [],
     nextLevelExp: EXP_PER_LEVEL[2]

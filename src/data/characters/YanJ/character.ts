@@ -17,7 +17,7 @@ export const YanJ: Character = {
     'gingadinha-de-cria': 0,
     'apaga-de-cigarro': 0,
   },
-  sprite: '/assets/personagens/YanJ4Real.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/YanJ4Real.png`,
   statusEffects: [],
   buffs: [],
   nextLevelExp: EXP_PER_LEVEL[2]

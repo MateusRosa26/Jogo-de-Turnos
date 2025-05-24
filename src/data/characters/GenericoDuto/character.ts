@@ -17,7 +17,7 @@ export const GenericoDuto: Character = {
         'espumar': 0,
         'trolladinha-de-cria': 0,
     },
-    sprite: '/assets/personagens/generico-duto.png',
+    sprite: `${import.meta.env.BASE_URL}assets/personagens/generico-duto.png`,
     statusEffects: [],
     buffs: [],
     nextLevelExp: EXP_PER_LEVEL[2]
