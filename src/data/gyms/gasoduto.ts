@@ -106,18 +106,18 @@ const markinMoves: Move[] = [
 const isquigor: Character = {
   id: 'isquigor',
   name: 'Isquigor',
-  level: 21,
+  level: 18,
   experience: 0,
-  nextLevelExp: 8200,
-  maxHealth: 900,
-  currentHealth: 900,
-  attack: 110,
+  nextLevelExp: 9450,
+  maxHealth: 780,
+  currentHealth: 780,
+  attack: 95,
   moves: isquigorMoves,
   moveLevels: {
     'reflexo-dioclin': 1,
     'quebrar-garrafa': 1
   },
-  sprite: '/assets/personagens/isquigor.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/isquigor.png`,
   statusEffects: [],
   buffs: []
 };
@@ -125,18 +125,18 @@ const isquigor: Character = {
 const roscalen: Character = {
   id: 'roscalen',
   name: 'Roscalen',
-  level: 22,
+  level: 19,
   experience: 0,
-  nextLevelExp: 8700,
-  maxHealth: 940,
-  currentHealth: 940,
-  attack: 115,
+  nextLevelExp: 10450,
+  maxHealth: 820,
+  currentHealth: 820,
+  attack: 100,
   moves: roscalenMoves,
   moveLevels: {
     'market-analysis': 1,
     'technical-indicator': 1
   },
-  sprite: '/assets/personagens/roscalen.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/roscalen.png`,
   statusEffects: [],
   buffs: []
 };
@@ -144,18 +144,18 @@ const roscalen: Character = {
 const zolenken: Character = {
   id: 'zolenken',
   name: 'Zolenken',
-  level: 23,
+  level: 20,
   experience: 0,
-  nextLevelExp: 9200,
-  maxHealth: 980,
-  currentHealth: 980,
-  attack: 120,
+  nextLevelExp: 11500,
+  maxHealth: 860,
+  currentHealth: 860,
+  attack: 105,
   moves: zolenkenMoves,
   moveLevels: {
     'chamar-capanga': 1,
     'mustangao': 1
   },
-  sprite: '/assets/personagens/zolenken.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/zolenken.png`,
   statusEffects: [],
   buffs: []
 };
@@ -163,12 +163,12 @@ const zolenken: Character = {
 const markin: Character = {
   id: 'markin',
   name: 'Markin',
-  level: 25,
+  level: 21,
   experience: 0,
-  nextLevelExp: 10000,
-  maxHealth: 1060,
-  currentHealth: 1060,
-  attack: 130,
+  nextLevelExp: 12600,
+  maxHealth: 900,
+  currentHealth: 900,
+  attack: 110,
   moves: markinMoves,
   moveLevels: {
     'julius': 1,
@@ -176,9 +176,18 @@ const markin: Character = {
     'voo-da-aguia-manca': 1,
     'call-rapido': 1
   },
-  sprite: '/assets/personagens/markin.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/markin.png`,
   statusEffects: [],
   buffs: []
 };
 
-export const gasoduto: Gym = {  id: 'gasoduto',  name: 'Gasoduto',  description: 'O quinto ginásio do jogo, onde os jogadores enfrentam os membros do Gasoduto.',  enemies: [isquigor, roscalen, zolenken, markin],  requiredLevel: 7,  baseExpReward: 200,  expPerLevel: 100,  rewardItems: GASODUTO_ITEMS}; 
+export const gasoduto: Gym = {
+  id: 'gasoduto',
+  name: 'Gasoduto',
+  description: 'O quinto ginásio do jogo, onde os jogadores enfrentam os membros do Gasoduto.',
+  enemies: [isquigor, roscalen, zolenken, markin],
+  requiredLevel: 17,
+  baseExpReward: 300,
+  expPerLevel: 150,
+  rewardItems: GASODUTO_ITEMS
+}; 

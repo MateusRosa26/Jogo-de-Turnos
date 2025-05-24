@@ -88,18 +88,18 @@ const meniMocioMoves: Move[] = [
 const lian: Character = {
   id: 'lian',
   name: 'Lian',
-  level: 13,
+  level: 10,
   experience: 0,
-  nextLevelExp: 4200,
-  maxHealth: 580,
-  currentHealth: 580,
-  attack: 70,
+  nextLevelExp: 3250,
+  maxHealth: 460,
+  currentHealth: 460,
+  attack: 55,
   moves: lianMoves,
   moveLevels: {
-    'buy-and-hold': 1,
-    'diamond-hands': 1
+    'reflexo-dioclin': 1,
+    'quebrar-garrafa': 1
   },
-  sprite: '/assets/personagens/lian.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/lian.png`,
   statusEffects: [],
   buffs: []
 };
@@ -107,18 +107,18 @@ const lian: Character = {
 const pv: Character = {
   id: 'pv',
   name: 'pv',
-  level: 14,
+  level: 11,
   experience: 0,
-  nextLevelExp: 4700,
-  maxHealth: 620,
-  currentHealth: 620,
-  attack: 75,
+  nextLevelExp: 3850,
+  maxHealth: 500,
+  currentHealth: 500,
+  attack: 60,
   moves: pvMoves,
   moveLevels: {
     'market-analysis': 1,
     'technical-indicator': 1
   },
-  sprite: '/assets/personagens/rod.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/pv.png`,
   statusEffects: [],
   buffs: []
 };
@@ -126,18 +126,18 @@ const pv: Character = {
 const gxtera: Character = {
   id: 'gxtera',
   name: 'gxtera',
-  level: 15,
+  level: 12,
   experience: 0,
-  nextLevelExp: 5200,
-  maxHealth: 660,
-  currentHealth: 660,
-  attack: 80,
+  nextLevelExp: 4500,
+  maxHealth: 540,
+  currentHealth: 540,
+  attack: 65,
   moves: gxteraMoves,
   moveLevels: {
-    'risk-management': 1,
-    'portfolio-diversification': 1
+    'chamar-capanga': 1,
+    'mustangao': 1
   },
-  sprite: '/assets/personagens/gxtera.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/gxtera.png`,
   statusEffects: [],
   buffs: []
 };
@@ -145,20 +145,29 @@ const gxtera: Character = {
 const meniMocio: Character = {
   id: 'meniMocio',
   name: 'meniMocio',
-  level: 16,
+  level: 13,
   experience: 0,
-  nextLevelExp: 5700,
-  maxHealth: 700,
-  currentHealth: 700,
-  attack: 85,
+  nextLevelExp: 5200,
+  maxHealth: 580,
+  currentHealth: 580,
+  attack: 70,
   moves: meniMocioMoves,
   moveLevels: {
     'market-crash': 1,
     'emotional-damage': 1
   },
-  sprite: '/assets/personagens/meniMocio.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/meniMocio.png`,
   statusEffects: [],
   buffs: []
 };
 
-export const quadra: Gym = {  id: 'quadra',  name: 'Quadra',  description: 'O terceiro ginásio do jogo, onde os jogadores enfrentam os membros da Quadra.',  enemies: [lian, pv, gxtera, meniMocio],  requiredLevel: 7,  baseExpReward: 200,  expPerLevel: 100,  rewardItems: QUADRA_ITEMS}; 
+export const quadra: Gym = {
+  id: 'quadra',
+  name: 'Quadra',
+  description: 'O terceiro ginásio do jogo, onde os jogadores enfrentam os membros da Quadra.',
+  enemies: [lian, pv, gxtera, meniMocio],
+  requiredLevel: 9,
+  baseExpReward: 200,
+  expPerLevel: 100,
+  rewardItems: QUADRA_ITEMS
+}; 

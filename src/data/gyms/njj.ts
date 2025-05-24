@@ -88,18 +88,18 @@ const dudolsMoves: Move[] = [
 const pedrolos: Character = {
   id: 'pedrolos',
   name: 'Pedrolos',
-  level: 17,
+  level: 14,
   experience: 0,
-  nextLevelExp: 6200,
-  maxHealth: 740,
-  currentHealth: 740,
-  attack: 90,
+  nextLevelExp: 5950,
+  maxHealth: 620,
+  currentHealth: 620,
+  attack: 75,
   moves: pedrolosMoves,
   moveLevels: {
-    'buy-and-hold': 1,
-    'diamond-hands': 1
+    'reflexo-dioclin': 1,
+    'quebrar-garrafa': 1
   },
-  sprite: '/assets/personagens/pedrolos.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/pedrolos.png`,
   statusEffects: [],
   buffs: []
 };
@@ -107,18 +107,18 @@ const pedrolos: Character = {
 const ricouls: Character = {
   id: 'ricouls',
   name: 'Ricouls',
-  level: 18,
+  level: 15,
   experience: 0,
-  nextLevelExp: 6700,
-  maxHealth: 780,
-  currentHealth: 780,
-  attack: 95,
+  nextLevelExp: 6750,
+  maxHealth: 660,
+  currentHealth: 660,
+  attack: 80,
   moves: ricoulsMoves,
   moveLevels: {
     'market-analysis': 1,
     'technical-indicator': 1
   },
-  sprite: '/assets/personagens/ricouls.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/ricouls.png`,
   statusEffects: [],
   buffs: []
 };
@@ -126,18 +126,18 @@ const ricouls: Character = {
 const deep: Character = {
   id: 'deep',
   name: 'Deep',
-  level: 19,
+  level: 16,
   experience: 0,
-  nextLevelExp: 7200,
-  maxHealth: 820,
-  currentHealth: 820,
-  attack: 100,
+  nextLevelExp: 7600,
+  maxHealth: 700,
+  currentHealth: 700,
+  attack: 85,
   moves: deepMoves,
   moveLevels: {
     'chamar-capanga': 1,
     'mustangao': 1
   },
-  sprite: '/assets/personagens/deep.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/deep.png`,
   statusEffects: [],
   buffs: []
 };
@@ -145,20 +145,29 @@ const deep: Character = {
 const dudols: Character = {
   id: 'dudols',
   name: 'Dudols',
-  level: 20,
+  level: 17,
   experience: 0,
-  nextLevelExp: 7700,
-  maxHealth: 860,
-  currentHealth: 860,
-  attack: 105,
+  nextLevelExp: 8500,
+  maxHealth: 740,
+  currentHealth: 740,
+  attack: 90,
   moves: dudolsMoves,
   moveLevels: {
     'market-crash': 1,
     'emotional-damage': 1
   },
-  sprite: '/assets/personagens/dudols.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/dudols.png`,
   statusEffects: [],
   buffs: []
 };
 
-export const njj: Gym = {  id: 'njj',  name: 'NJJ',  description: 'O quarto ginásio do jogo, onde os jogadores enfrentam os membros do NJJ.',  enemies: [pedrolos, ricouls, deep, dudols],  requiredLevel: 7,  baseExpReward: 200,  expPerLevel: 100,  rewardItems: NJJ_ITEMS}; 
+export const njj: Gym = {
+  id: 'njj',
+  name: 'NJJ',
+  description: 'O quarto ginásio do jogo, onde os jogadores enfrentam os membros do NJJ.',
+  enemies: [pedrolos, ricouls, deep, dudols],
+  requiredLevel: 13,
+  baseExpReward: 250,
+  expPerLevel: 125,
+  rewardItems: NJJ_ITEMS
+}; 

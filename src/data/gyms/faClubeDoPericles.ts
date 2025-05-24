@@ -124,8 +124,8 @@ const landim: Character = {
   level: 2,
   experience: 0,
   nextLevelExp: 250,
-  maxHealth: 120,
-  currentHealth: 120,
+  maxHealth: 140,
+  currentHealth: 140,
   attack: 15,
   moves: landimMoves,
   moveLevels: {
@@ -140,12 +140,12 @@ const landim: Character = {
 const kaiera: Character = {
   id: 'kaiera',
   name: 'Kaiera',
-  level: 4,
+  level: 3,
   experience: 0,
   nextLevelExp: 450,
-  maxHealth: 200,
-  currentHealth: 200,
-  attack: 25,
+  maxHealth: 180,
+  currentHealth: 180,
+  attack: 20,
   moves: kaieraMoves,
   moveLevels: {
     'chicote-de-cabelo': 1,
@@ -159,12 +159,12 @@ const kaiera: Character = {
 const damoze: Character = {
   id: 'damoze',
   name: 'DaMoze',
-  level: 6,
+  level: 4,
   experience: 0,
   nextLevelExp: 1000,
-  maxHealth: 300,
-  currentHealth: 300,
-  attack: 35,
+  maxHealth: 220,
+  currentHealth: 220,
+  attack: 25,
   moves: damozeMoves,
   moveLevels: {
     'nevoeiro': 1,
@@ -172,7 +172,7 @@ const damoze: Character = {
     'barrigada': 1,
     'alt-f4-lanchinho': 1
   },
-  sprite: '/assets/personagens/daMoze.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/daMoze.png`,
   statusEffects: [],
   buffs: []
 };
@@ -180,12 +180,12 @@ const damoze: Character = {
 const tana: Character = {
   id: 'tana',
   name: 'Tana',
-  level: 8,
+  level: 5,
   experience: 0,
   nextLevelExp: 1750,
-  maxHealth: 380,
-  currentHealth: 380,
-  attack: 45,
+  maxHealth: 260,
+  currentHealth: 260,
+  attack: 30,
   moves: tanaMoves,
   moveLevels: {
     'pedalada': 1,
@@ -193,7 +193,7 @@ const tana: Character = {
     'zaga': 1,
     'call-rapido': 1
   },
-  sprite: '/assets/personagens/tana.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/tana.png`,
   statusEffects: [],
   buffs: []
 };
@@ -203,5 +203,8 @@ export const faClubeDoPericles: Gym = {
   name: 'Fa Clube do Pericles',
   description: 'O primeiro ginásio do jogo, onde os jogadores enfrentam os membros do Fa Clube do Pericles.',
   enemies: [landim, kaiera, damoze, tana],
-    requiredLevel: 1,  baseExpReward: 100,  expPerLevel: 50,  rewardItems: PERICLES_ITEMS
+  requiredLevel: 1,
+  baseExpReward: 100,
+  expPerLevel: 50,
+  rewardItems: PERICLES_ITEMS
 }; 

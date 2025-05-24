@@ -86,18 +86,18 @@ const cryBabyMoves: Move[] = [
 const cohen: Character = {
   id: 'cohen',
   name: 'Cohen',
-  level: 9,
+  level: 6,
   experience: 0,
-  nextLevelExp: 2200,
-  maxHealth: 420,
-  currentHealth: 420,
-  attack: 50,
+  nextLevelExp: 1350,
+  maxHealth: 300,
+  currentHealth: 300,
+  attack: 35,
   moves: cohenMoves,
   moveLevels: {
     'buy-and-hold': 1,
     'diamond-hands': 1
   },
-  sprite: '/assets/personagens/cohen.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/cohen.png`,
   statusEffects: [],
   buffs: []
 };
@@ -105,18 +105,18 @@ const cohen: Character = {
 const rod: Character = {
   id: 'rod',
   name: 'Rod',
-  level: 10,
+  level: 7,
   experience: 0,
-  nextLevelExp: 2700,
-  maxHealth: 460,
-  currentHealth: 460,
-  attack: 55,
+  nextLevelExp: 1750,
+  maxHealth: 340,
+  currentHealth: 340,
+  attack: 40,
   moves: rodMoves,
   moveLevels: {
     'market-analysis': 1,
     'technical-indicator': 1
   },
-  sprite: '/assets/personagens/rod.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/rod.png`,
   statusEffects: [],
   buffs: []
 };
@@ -124,18 +124,18 @@ const rod: Character = {
 const medaw: Character = {
   id: 'medaw',
   name: 'Medaw',
-  level: 11,
+  level: 8,
   experience: 0,
-  nextLevelExp: 3200,
-  maxHealth: 500,
-  currentHealth: 500,
-  attack: 60,
+  nextLevelExp: 2200,
+  maxHealth: 380,
+  currentHealth: 380,
+  attack: 45,
   moves: medawMoves,
   moveLevels: {
     'risk-management': 1,
     'portfolio-diversification': 1
   },
-  sprite: '/assets/personagens/medaw.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/medaw.png`,
   statusEffects: [],
   buffs: []
 };
@@ -143,20 +143,29 @@ const medaw: Character = {
 const cryBaby: Character = {
   id: 'crybaby',
   name: 'CryBaby',
-  level: 12,
+  level: 9,
   experience: 0,
-  nextLevelExp: 3700,
-  maxHealth: 540,
-  currentHealth: 540,
-  attack: 65,
+  nextLevelExp: 2700,
+  maxHealth: 420,
+  currentHealth: 420,
+  attack: 50,
   moves: cryBabyMoves,
   moveLevels: {
     'market-crash': 1,
     'emotional-damage': 1
   },
-  sprite: '/assets/personagens/crybaby.png',
+  sprite: `${import.meta.env.BASE_URL}assets/personagens/crybaby.png`,
   statusEffects: [],
   buffs: []
 };
 
-export const buyNHold: Gym = {  id: 'buy-n-hold',  name: 'Buy N Hold',  description: 'O segundo ginásio do jogo, onde os jogadores enfrentam os membros do Buy N Hold.',  enemies: [cohen, rod, medaw, cryBaby],  requiredLevel: 7,  baseExpReward: 200,  expPerLevel: 100,  rewardItems: BUYHOLD_ITEMS}; 
+export const buyNHold: Gym = {
+  id: 'buy-n-hold',
+  name: 'Buy N Hold',
+  description: 'O segundo ginásio do jogo, onde os jogadores enfrentam os membros do Buy N Hold.',
+  enemies: [cohen, rod, medaw, cryBaby],
+  requiredLevel: 5,
+  baseExpReward: 150,
+  expPerLevel: 75,
+  rewardItems: BUYHOLD_ITEMS
+}; 
