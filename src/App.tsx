@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { GameProvider } from '@/context/GameContext';
 import { ThemeProvider, useTheme } from '@/context/ThemeContext';
 import BattlePage from '@/pages/BattlePage';
@@ -27,12 +27,12 @@ function AppContent() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ThemeProvider>
         <GameProvider>
           <AppContent />
         </GameProvider>
       </ThemeProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
