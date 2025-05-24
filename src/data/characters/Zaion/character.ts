@@ -17,7 +17,7 @@ export const Zaion: Character = {
     'gingadinha-de-cria': 0,
     'apaga-de-cigarro': 0,
   },
-  sprite: `${import.meta.env.BASE_URL}assets/personagens/Zaion.png`,
+  sprite: '/assets/personagens/Zaion.png',
   statusEffects: [],
   buffs: [],
   nextLevelExp: EXP_PER_LEVEL[2]

@@ -22,9 +22,9 @@ export const GYMS = [
 
 // Mapeamento de backgrounds para cada ginásio
 export const GYM_BACKGROUNDS = {
-  'fa-clube-do-pericles': `${import.meta.env.BASE_URL}assets/cenarios/fundoPericles.jpg`,
-  'buy-n-hold': `${import.meta.env.BASE_URL}assets/cenarios/fundoBuyNHold.jpg`,
-  'quadra': `${import.meta.env.BASE_URL}assets/cenarios/fundoQuadra.jpg`,
-  'njj': `${import.meta.env.BASE_URL}assets/cenarios/fundoNJJ.jpg`,
-  'gasoduto': `${import.meta.env.BASE_URL}assets/cenarios/fundoGasoduto.jpg`
+  'fa-clube-do-pericles': '/assets/cenarios/fundoPericles.jpg',
+  'buy-n-hold': '/assets/cenarios/fundoBuyNHold.jpg',
+  'quadra': '/assets/cenarios/fundoQuadra.jpg',
+  'njj': '/assets/cenarios/fundoNJJ.jpg',
+  'gasoduto': '/assets/cenarios/fundoGasoduto.jpg'
 }; 

@@ -17,7 +17,7 @@ export const Tana: Character = {
         'zaga': 0,
         'call-rapido': 0,
     },
-    sprite: `${import.meta.env.BASE_URL}assets/personagens/tana.png`,
+    sprite: '/assets/personagens/tana.png',
     statusEffects: [],
     buffs: [],
     nextLevelExp: EXP_PER_LEVEL[2]

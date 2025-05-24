@@ -17,7 +17,7 @@ export const DaMoze: Character = {
         'barrigada': 0,
         'alt-f4-lanchinho': 0,
     },
-    sprite: `${import.meta.env.BASE_URL}assets/personagens/daMoze.png`,
+    sprite: '/assets/personagens/daMoze.png',
     statusEffects: [],
     buffs: [],
     nextLevelExp: EXP_PER_LEVEL[2]
