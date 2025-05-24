@@ -6,6 +6,7 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   base: '/Jogo-de-Turnos/',
+  publicDir: 'public',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
